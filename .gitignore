@@ -1,0 +1,14 @@
+# node_modules は容量が大きいのでGitに入れない
+node_modules/
+
+# ビルド成果物
+dist/
+build/
+
+# OSやエディタの設定ファイル
+.DS_Store
+.vscode/
+
+# 環境変数ファイル（APIキーなど）
+.env
+.env.local
