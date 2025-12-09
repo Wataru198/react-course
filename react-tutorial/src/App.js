@@ -7,6 +7,9 @@ function App() {
   // useState(0) で、最初の値を0にする
   const [count, setCount] = useState(0);
 
+  // フォームに入力された開始値を管理する状態。初期値は空文字にする
+  const [startValue, setStartValue] = useState("");
+
   // コンポーネントが最初に表示されたときに1回だけ実行される処理
   useEffect(() => {
     // localStorageから前回保存したカウント値を取り出す
@@ -36,6 +39,25 @@ function App() {
     setCount(count - 1);
   };
 
+  // 「スタート」ボタンがクリックされたときに実行される処理
+  const handleStart = () => {
+    // 入力欄が空の場合は何もしない
+    if (startValue === "") {
+      return;
+    }
+
+    // 入力された文字列を数値に変換する
+    const num = Number(startValue);
+
+    // 数値に変換できなかった場合（NaNのとき）は何もしない
+    if (Number.isNaN(num)) {
+      return;
+    }
+
+    // countの値を入力された数値に変更する
+    setCount(num);
+  };
+
   // 画面に表示する内容を返す
   return (
     // アプリ全体を囲むdivタグ
@@ -45,6 +67,19 @@ function App() {
 
       {/* 現在のカウントの値を表示する */}
       <p>現在のカウント値: {count}</p>
+
+      {/* 開始値を入力するフォームとスタートボタン */}
+      <div>
+        {/* 開始値を入力するテキストボックス */}
+        <input
+          type="number" // 数値専用の入力にする
+          placeholder="開始値を入力"
+          value={startValue} // 入力欄に表示する値
+          onChange={(event) => setStartValue(event.target.value)} // 入力が変わるたびにstartValueを更新する
+        />
+        {/* クリックするとhandleStartが実行されるボタン */}
+        <button onClick={handleStart}>この値からスタート</button>
+      </div>
 
       {/* クリックするとhandleIncrementが実行されるボタン */}
       <button onClick={handleIncrement}>＋1する</button>
