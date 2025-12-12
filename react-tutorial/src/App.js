@@ -87,12 +87,21 @@ function App() {
     setTodos(updatedTodos);
   };
 
+  // 「削除」ボタンがクリックされたときに実行される処理
+  const handleDeleteTodo = (id) => {
+    // 指定されたid以外のTODOだけを残した新しい配列を作る
+    const filteredTodos = todos.filter((todo) => todo.id !== id);
+
+    // 状態を更新して画面に反映させる
+    setTodos(filteredTodos);
+  };
+
   // 画面に表示する内容を返す
   return (
     // アプリ全体を囲むdivタグ
     <div>
       {/* アプリのタイトルを表示する */}
-      <h1>Day2 TODOアプリ</h1>
+      <h1>Day2 TODOアプリ（追加要件1：削除機能付き）</h1>
 
       {/* TODOアプリの説明文 */}
       <p>ここにTODOアプリを実装していきます。</p>
@@ -134,10 +143,13 @@ function App() {
               <span
                 style={{
                   textDecoration: todo.completed ? "line-through" : "none", // 完了なら取り消し線を引く
+                  marginRight: "8px", // 文字と削除ボタンの間に余白を入れる
                 }}
               >
                 {todo.text}
               </span>
+              {/* このTODOを削除するためのボタン */}
+              <button onClick={() => handleDeleteTodo(todo.id)}>削除</button>
             </li>
           ))}
         </ul>
