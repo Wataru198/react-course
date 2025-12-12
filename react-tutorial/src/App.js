@@ -38,6 +38,10 @@ function App() {
     }
   });
 
+  // 並べ替えモードを管理する状態。
+  // false: 追加した順, true: 完了したTODOを上に表示
+  const [sortByCompleted, setSortByCompleted] = useState(false);
+
   // todosの値が変わるたびに実行される処理
   useEffect(() => {
     // todos配列をJSON形式の文字列に変換してlocalStorageに保存する
@@ -96,12 +100,22 @@ function App() {
     setTodos(filteredTodos);
   };
 
+  // 画面に表示する際に使う並べ替え後のTODO一覧を作る
+  const displayTodos = sortByCompleted
+    ? // sortByCompletedがtrueのときは完了しているTODOを上に表示する
+      [...todos].sort((a, b) => {
+        // completedがtrueのものを先にしたいので、trueを1, falseを0として比較する
+        return Number(b.completed) - Number(a.completed);
+      })
+    : // falseのときは追加した順（元の配列の順番）のまま表示する
+      todos;
+
   // 画面に表示する内容を返す
   return (
     // アプリ全体を囲むdivタグ
     <div>
       {/* アプリのタイトルを表示する */}
-      <h1>Day2 TODOアプリ（追加要件1：削除機能付き）</h1>
+      <h1>Day2 TODOアプリ（追加要件2：並べ替え機能付き）</h1>
 
       {/* TODOアプリの説明文 */}
       <p>ここにTODOアプリを実装していきます。</p>
@@ -123,14 +137,29 @@ function App() {
         <button onClick={handleAddTodo}>追加</button>
       </div>
 
+      {/* 並べ順を切り替えるボタンのエリア */}
+      <div>
+        {/* 現在の並べ替えモードを説明するテキスト */}
+        <p>
+          並べ順:{" "}
+          {sortByCompleted ? "完了したTODOを上に表示" : "追加した順に表示"}
+        </p>
+        {/* クリックするとsortByCompletedの値を反転させるボタン */}
+        <button onClick={() => setSortByCompleted(!sortByCompleted)}>
+          {sortByCompleted
+            ? "追加した順に戻す"
+            : "完了したTODOを上に表示する"}
+        </button>
+      </div>
+
       {/* TODO一覧を表示するエリア */}
       <div>
         {/* 一覧のタイトル */}
         <h2>TODO一覧</h2>
 
-        {/* todos配列の中身を1件ずつ<li>タグで表示する */}
+        {/* displayTodos配列の中身を1件ずつ<li>タグで表示する */}
         <ul>
-          {todos.map((todo) => (
+          {displayTodos.map((todo) => (
             // 各TODOをリストの1行として表示する。keyには一意なidを指定する
             <li key={todo.id}>
               {/* TODOの完了状態を表すチェックボックス */}
