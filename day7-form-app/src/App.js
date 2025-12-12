@@ -5,14 +5,29 @@ import { useState } from "react";
 
 // アプリ全体を表すコンポーネントAppを定義する
 function App() {
-  // 入力フォームの値を管理するための状態inputTextと、その値を更新するsetInputText関数を定義する
-  // 初期値は空文字("")にすることで、最初は何も入力されていない状態にする
-  const [inputText, setInputText] = useState("");
+  // 名前入力用の状態nameと、その値を更新するためのsetName関数を定義する
+  const [name, setName] = useState("");
+  // メールアドレス入力用の状態emailと、その値を更新するためのsetEmail関数を定義する
+  const [email, setEmail] = useState("");
+  // コメント入力用の状態commentと、その値を更新するためのsetComment関数を定義する
+  const [comment, setComment] = useState("");
 
-  // テキストボックスの内容が変わったときに実行される処理を定義する
-  const handleChangeInput = (event) => {
-    // event.target.value に、ユーザーが入力した文字列が入っているので、それを状態に反映する
-    setInputText(event.target.value);
+  // 名前入力欄が変更されたときに呼び出される処理
+  const handleChangeName = (event) => {
+    // event.target.value に入力された文字列が入っているので、それをname状態に反映する
+    setName(event.target.value);
+  };
+
+  // メール入力欄が変更されたときに呼び出される処理
+  const handleChangeEmail = (event) => {
+    // 入力されたメールアドレスをemail状態に反映する
+    setEmail(event.target.value);
+  };
+
+  // コメント入力欄が変更されたときに呼び出される処理
+  const handleChangeComment = (event) => {
+    // 入力されたコメントをcomment状態に反映する
+    setComment(event.target.value);
   };
 
   // 画面に表示する JSX（HTMLのような見た目の記述）を return で返す
@@ -27,7 +42,7 @@ function App() {
       }}
     >
       {/* アプリのタイトルを表示する h1 要素 */}
-      <h1>Day7 フォームアプリ（最低要件）</h1>
+      <h1>Day7 フォームアプリ（追加要件1：複数項目）</h1>
 
       {/* フォーム部分を囲むコンテナ */}
       <div
@@ -35,19 +50,61 @@ function App() {
           border: "1px solid #ccc", // 枠線を付ける
           padding: "16px", // 内側の余白
           marginBottom: "24px", // 下側の余白
+          maxWidth: "600px", // フォームの最大幅
+          margin: "0 auto 24px", // 中央寄せ＋下方向に余白
+          textAlign: "left", // ラベルと入力欄は左寄せにする
         }}
       >
         {/* フォームの見出し */}
         <h2>入力フォーム</h2>
 
-        {/* テキストボックス。value に状態変数inputTextを渡し、onChangeで値の変化を検知する */}
-        <input
-          type="text" // テキスト入力用フィールド
-          placeholder="ここに文字を入力してください" // 何も入力されていないときの薄い説明文
-          value={inputText} // フォームの表示値としてinputText状態を使う（いわゆる「制御されたコンポーネント」）
-          onChange={handleChangeInput} // 入力値が変化するたびにhandleChangeInputが呼ばれる
-          style={{ width: "80%", padding: "8px" }} // 入力欄の横幅や余白を設定する
-        />
+        {/* 名前入力欄 */}
+        <div style={{ marginBottom: "16px" }}>
+          {/* 名前ラベル */}
+          <label style={{ display: "block", marginBottom: "4px" }}>
+            名前
+          </label>
+          {/* 名前のテキストボックス */}
+          <input
+            type="text" // テキスト入力用フィールド
+            placeholder="お名前を入力してください" // プレースホルダー（薄い説明文）
+            value={name} // 表示する値としてname状態を使う
+            onChange={handleChangeName} // 入力値が変化するたびにhandleChangeNameが呼ばれる
+            style={{ width: "100%", padding: "8px" }} // 横幅と余白の指定
+          />
+        </div>
+
+        {/* メール入力欄 */}
+        <div style={{ marginBottom: "16px" }}>
+          {/* メールラベル */}
+          <label style={{ display: "block", marginBottom: "4px" }}>
+            メールアドレス
+          </label>
+          {/* メールの入力フィールド */}
+          <input
+            type="email" // メールアドレス用の入力タイプ
+            placeholder="メールアドレスを入力してください"
+            value={email} // 表示する値としてemail状態を使う
+            onChange={handleChangeEmail} // 入力値が変化するたびにhandleChangeEmailが呼ばれる
+            style={{ width: "100%", padding: "8px" }}
+          />
+        </div>
+
+        {/* コメント入力欄 */}
+        <div style={{ marginBottom: "16px" }}>
+          {/* コメントラベル */}
+          <label style={{ display: "block", marginBottom: "4px" }}>
+            コメント
+          </label>
+          {/* コメントのテキストエリア */}
+          <textarea
+            placeholder="コメントを入力してください"
+            value={comment} // 表示する値としてcomment状態を使う
+            onChange={handleChangeComment} // 入力値が変化するたびにhandleChangeCommentが呼ばれる
+            rows={4} // 行数を4行に設定
+            style={{ width: "100%", padding: "8px" }}
+          />
+        </div>
       </div>
 
       {/* 表示部分を囲むコンテナ */}
@@ -55,13 +112,27 @@ function App() {
         style={{
           border: "1px solid #ccc", // 枠線を付ける
           padding: "16px", // 内側の余白
+          maxWidth: "600px", // 最大幅
+          margin: "0 auto", // 中央寄せ
+          textAlign: "left", // 左寄せ
         }}
       >
         {/* 表示エリアの見出し */}
         <h2>リアルタイム表示</h2>
 
-        {/* 入力されたテキストをそのまま表示する。inputTextが空文字の場合は何も表示されない */}
-        <p>現在の入力内容：{inputText}</p>
+        {/* 入力された各項目をリアルタイムで表示する */}
+        <p>
+          <strong>名前：</strong>
+          {name}
+        </p>
+        <p>
+          <strong>メールアドレス：</strong>
+          {email}
+        </p>
+        <p>
+          <strong>コメント：</strong>
+          {comment}
+        </p>
       </div>
     </div>
   );
