@@ -1,0 +1,262 @@
+/* レイアウト全体のスタイル */
+.layout-root {
+  min-height: 100vh;              /* 画面の高さ全体をカバーする */
+  display: flex;                  /* ヘッダー・メイン・フッターを縦に並べる */
+  flex-direction: column;         /* 縦並びにする */
+  background: #0f172a;            /* 濃いネイビーカラーの背景 */
+  color: #e5e7eb;                 /* やや明るいグレーの文字色 */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;                   /* 読みやすいシステムフォント群 */
+}
+
+/* 共通のmainコンテンツエリア */
+.layout-main {
+  flex: 1;                        /* 残りの高さをすべてmainに割り当てる */
+  width: 100%;                    /* 横幅は100% */
+  max-width: 960px;               /* PCでは最大960pxに制限する */
+  margin: 0 auto;                 /* 中央寄せ */
+  padding: 16px;                  /* 画面の端との余白 */
+  box-sizing: border-box;         /* padding込みでサイズ計算する */
+}
+
+/* ヘッダー全体のスタイル */
+.site-header {
+  width: 100%;                    /* ヘッダーは画面全体の幅 */
+  max-width: 960px;               /* 中身はmainと同じ幅に揃える */
+  margin: 0 auto;                 /* 中央寄せ */
+  padding: 12px 16px;             /* 内側の余白 */
+  display: flex;                  /* タイトルとナビを横並びにする */
+  align-items: center;            /* 縦方向の中央揃え */
+  justify-content: space-between; /* 左右に分けて配置 */
+  box-sizing: border-box;         /* padding込みのサイズ */
+}
+
+/* サイトタイトル部分 */
+.site-header__brand {
+  font-size: 1.2rem;              /* 少し大きめの文字 */
+  font-weight: 700;               /* 太字 */
+  color: #e5e7eb;                 /* 明るめの文字色 */
+  text-decoration: none;          /* 下線を消す */
+}
+
+/* ナビゲーション全体のスタイル */
+.site-nav {
+  display: flex;                  /* 横並びでリンクを並べる */
+  gap: 12px;                      /* リンクの間に隙間を空ける */
+}
+
+/* ナビゲーションリンク共通のスタイル */
+.site-nav__link {
+  color: #9ca3af;                 /* やや薄い文字色 */
+  text-decoration: none;          /* 下線を消す */
+  font-size: 0.95rem;             /* 標準より少し小さめ */
+  padding: 6px 10px;              /* クリックしやすいように余白をつける */
+  border-radius: 999px;           /* 角を丸くしてピル型にする */
+  transition: background 0.15s ease, color 0.15s ease; /* ホバー時のアニメーション */
+}
+
+/* アクティブなリンク用のスタイル */
+.site-nav__link--active {
+  background: #2563eb;            /* 青色の背景 */
+  color: #f9fafb;                 /* ほぼ白の文字色 */
+}
+
+/* ホバー時のスタイル */
+.site-nav__link:hover {
+  background: #1f2937;            /* 少し明るいグレーの背景にする */
+}
+
+/* フッター全体のスタイル */
+.site-footer {
+  width: 100%;                    /* 画面幅いっぱい */
+  max-width: 960px;               /* mainと同じ幅に揃える */
+  margin: 0 auto;                 /* 中央寄せ */
+  padding: 12px 16px;             /* 内側の余白 */
+  box-sizing: border-box;         /* padding込みのサイズ */
+  font-size: 0.8rem;              /* 小さめの文字 */
+  color: #9ca3af;                 /* 薄めの文字色 */
+  text-align: center;             /* 中央寄せ */
+}
+
+/* フッター内のテキスト */
+.site-footer__text {
+  margin: 0;                      /* デフォルトの余白を消す */
+}
+
+/* ページ共通のコンテナ */
+.page {
+  display: flex;                  /* 縦方向レイアウトのためにflexを使う */
+  flex-direction: column;         /* 縦並び */
+  gap: 12px;                      /* 要素間の余白 */
+}
+
+/* ページタイトル */
+.page-title {
+  font-size: 1.4rem;              /* 少し大きめの文字サイズ */
+  margin: 0;                      /* デフォルト余白を消す */
+}
+
+/* ページ内の説明テキスト */
+.page-text {
+  font-size: 0.95rem;             /* 標準より少し小さめ */
+  line-height: 1.6;               /* 行間を広くして読みやすくする */
+  margin: 0;                      /* デフォルト余白を消す */
+}
+
+/* Homeページ専用のボタンエリア */
+.home-actions {
+  display: flex;                  /* ボタンを横並びまたは折り返しで並べる */
+  flex-wrap: wrap;                /* 幅が足りない場合は折り返す */
+  gap: 12px;                      /* ボタン間の隙間 */
+  margin-top: 12px;               /* 上側の余白 */
+}
+
+/* 汎用ボタンスタイル */
+.button {
+  display: inline-flex;           /* 中身を横並びに配置 */
+  align-items: center;            /* 縦方向中央揃え */
+  justify-content: center;        /* 横方向中央揃え */
+  padding: 8px 16px;              /* 内側の余白 */
+  border-radius: 999px;           /* 角を丸くする */
+  font-size: 0.95rem;             /* 文字サイズ */
+  font-weight: 600;               /* 少し太め */
+  text-decoration: none;          /* 下線を消す */
+  cursor: pointer;                /* ホバー時にポインタにする */
+  transition: transform 0.1s ease, opacity 0.1s ease; /* 押したときのアニメーション */
+}
+
+/* プライマリボタン用スタイル */
+.button--primary {
+  background: #2563eb;            /* 青色の背景 */
+  color: #f9fafb;                 /* ほぼ白の文字色 */
+}
+
+/* セカンダリボタン用スタイル */
+.button--secondary {
+  background: #374151;            /* 濃いめのグレー背景 */
+  color: #e5e7eb;                 /* 明るめの文字色 */
+}
+
+/* ボタンを押したときのフィードバック */
+.button:active {
+  transform: scale(0.97);         /* 少し小さくして押し込み感を出す */
+  opacity: 0.9;                   /* ほんの少し透明にする */
+}
+
+/* Worksページのカード一覧グリッド */
+.works-grid {
+  display: grid;                  /* グリッドレイアウトを使う */
+  grid-template-columns: 1fr;     /* スマホでは1列表示 */
+  gap: 16px;                      /* カード間の隙間 */
+  margin-top: 16px;               /* 上側の余白 */
+}
+
+/* 制作物カード全体のスタイル */
+.work-card {
+  background: #111827;            /* 少し明るいダーク背景 */
+  border-radius: 12px;            /* 角を丸くする */
+  overflow: hidden;               /* 角からはみ出した部分を隠す */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* 影を付ける */
+  display: flex;                  /* 縦に並べる */
+  flex-direction: column;         /* 縦並び */
+}
+
+/* カード内の画像を包む要素 */
+.work-card__image-wrapper {
+  width: 100%;                    /* 横幅いっぱい */
+  height: 0;                      /* 一旦高さ0にする */
+  padding-top: 62.5%;             /* アスペクト比16:10くらいになるようにする */
+  position: relative;             /* 子要素のabsolute配置の基準にする */
+}
+
+/* 実際の画像スタイル */
+.work-card__image {
+  position: absolute;             /* 親要素の中で絶対配置 */
+  top: 0;                         /* 上端に合わせる */
+  left: 0;                        /* 左端に合わせる */
+  width: 100%;                    /* 親要素いっぱいに広げる */
+  height: 100%;                   /* 親要素いっぱいに広げる */
+  object-fit: cover;              /* 画像をトリミングして枠にフィットさせる */
+}
+
+/* カード本文のスタイル */
+.work-card__body {
+  padding: 12px 16px;             /* 内側の余白 */
+}
+
+/* カードタイトル */
+.work-card__title {
+  font-size: 1.1rem;              /* やや大きめの文字サイズ */
+  margin: 0 0 4px 0;              /* 下に少しだけ余白 */
+}
+
+/* カードの説明テキスト */
+.work-card__description {
+  font-size: 0.9rem;              /* 少し小さめの文字サイズ */
+  line-height: 1.6;               /* 行間を広めにする */
+  margin: 0 0 8px 0;              /* 下に少し余白 */
+}
+
+/* タグ一覧 */
+.work-card__tags {
+  display: flex;                  /* タグを横並びで表示する */
+  flex-wrap: wrap;                /* 幅が足りない場合は折り返す */
+  gap: 6px;                       /* タグ同士の隙間 */
+  padding: 0;                     /* デフォルトのpaddingを消す */
+  margin: 0;                      /* デフォルトのmarginを消す */
+  list-style: none;               /* 箇条書きの点を消す */
+}
+
+/* 個々のタグバッジ */
+.work-card__tag {
+  font-size: 0.75rem;             /* 小さめの文字サイズ */
+  padding: 3px 8px;               /* 内側の余白 */
+  border-radius: 999px;           /* 完全な丸カプセル形状 */
+  background: #1f2937;            /* 濃いグレーの背景 */
+  color: #e5e7eb;                 /* 明るい文字色 */
+}
+
+/* Aboutページ内のセクション */
+.about-section {
+  margin-top: 12px;               /* 上側に余白 */
+}
+
+/* Aboutセクションの小見出し */
+.about-section__title {
+  font-size: 1rem;                /* 小見出しサイズ */
+  margin: 0 0 4px 0;              /* 下に少し余白 */
+}
+
+/* Aboutページ内のリスト */
+.about-list {
+  margin: 0;                      /* デフォルトのmarginを消す */
+  padding-left: 18px;             /* 左のインデントを少しだけ残す */
+  font-size: 0.9rem;              /* 少し小さめの文字サイズ */
+  line-height: 1.6;               /* 行間 */
+}
+
+/* 画面幅が768px以上（タブレット〜PC）のときのレイアウト調整 */
+@media (min-width: 768px) {
+  .works-grid {
+    grid-template-columns: repeat(2, 1fr); /* 制作物カードを2列表示にする */
+  }
+
+  .home-actions {
+    justify-content: flex-start;  /* ボタンを左寄せにする */
+  }
+}
+
+/* 画面幅が480px以下（スマホ）向けのヘッダー調整 */
+@media (max-width: 480px) {
+  .site-header {
+    flex-direction: column;       /* タイトルとナビを縦並びにする */
+    align-items: flex-start;      /* 左寄せ */
+    gap: 8px;                     /* タイトルとナビに隙間を空ける */
+  }
+
+  .site-nav {
+    width: 100%;                  /* ナビを横幅いっぱいにする */
+    justify-content: flex-start;  /* 左寄せ */
+    flex-wrap: wrap;              /* 幅が足りない場合は折り返す */
+  }
+}

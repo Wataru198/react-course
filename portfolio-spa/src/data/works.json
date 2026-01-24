@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "カウンターアプリ",
+    "image": "https://via.placeholder.com/400x250?text=Counter+App",
+    "description": "ReactとuseStateを使って作成した、+1/-1/リセットができるシンプルなカウンターアプリです。",
+    "tags": ["React", "useState", "Practice"]
+  },
+  {
+    "id": 2,
+    "title": "TODOリスト（学習用）",
+    "image": "https://via.placeholder.com/400x250?text=Todo+App",
+    "description": "追加・チェック・削除など、状態管理と配列操作の練習として作成したTODOアプリです。",
+    "tags": ["React", "Hooks"]
+  },
+  {
+    "id": 3,
+    "title": "フォーム入力＆保存アプリ",
+    "image": "https://via.placeholder.com/400x250?text=Form+App",
+    "description": "名前・メール・コメントを入力して、画面上に保存・一覧表示できるフォームアプリです。",
+    "tags": ["React", "Form", "useState"]
+  }
+]
