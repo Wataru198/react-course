@@ -1,0 +1,152 @@
+/* 画面全体の背景やフォントを設定する */
+.app-root {
+  min-height: 100vh;            /* 画面の高さ全体をカバーする */
+  display: flex;                /* ヘッダー・メイン・フッターを縦方向に並べる */
+  flex-direction: column;       /* 縦並び（column）にする */
+  align-items: center;          /* 横方向を中央寄せにする */
+  background: #0f172a;          /* 濃いめの背景色（ダーク系） */
+  color: #e5e7eb;               /* 文字色は淡いグレー */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;                 /* システムフォントを優先して使う */
+  padding: 16px;                /* 画面の端に少し余白をつける */
+  box-sizing: border-box;       /* padding込みでサイズ計算を行う */
+}
+
+/* ヘッダー全体のスタイル */
+.app-header {
+  width: 100%;                  /* 幅は画面全体に広げる */
+  max-width: 640px;             /* PCでは最大640pxに制限する（中央に細長いレイアウト） */
+  text-align: center;           /* テキストを中央寄せにする */
+  margin-bottom: 16px;          /* 下に余白をつける */
+}
+
+/* タイトル文字のスタイル */
+.app-title {
+  font-size: 1.75rem;           /* 少し大きめの文字サイズ */
+  margin: 0;                    /* デフォルトの余白を消す */
+}
+
+/* サブタイトルのスタイル */
+.app-subtitle {
+  font-size: 0.9rem;            /* 少し小さめの文字サイズ */
+  color: #9ca3af;               /* 文字色を薄めにしてサブ感を出す */
+  margin-top: 4px;              /* タイトルとの距離を少し空ける */
+}
+
+/* メインコンテンツを囲むカード風のボックス */
+.app-main {
+  width: 100%;                  /* スマホでは画面の幅いっぱいを使う */
+  max-width: 640px;             /* PCでは最大幅を640pxに制限する */
+  background: #111827;          /* 少しだけ明るいダーク色の背景 */
+  border-radius: 12px;          /* 角を丸くしてカードっぽくする */
+  padding: 24px;                /* 内側に余白をつける */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35); /* 立体感のある影 */
+  box-sizing: border-box;       /* padding込みでサイズ計算 */
+}
+
+/* カウント表示部分のスタイル */
+.counter-display {
+  text-align: center;           /* 中央寄せにする */
+  margin-bottom: 16px;          /* 下に余白をつける */
+}
+
+/* 「現在のカウント」というラベルのスタイル */
+.counter-label {
+  font-size: 0.9rem;            /* 少し小さめの文字サイズ */
+  color: #9ca3af;               /* 薄めのグレーでラベル感を出す */
+  margin-bottom: 4px;           /* 数字との間に少し余白をつける */
+}
+
+/* 現在のカウント値（数字）のスタイル */
+.counter-value {
+  font-size: 3rem;              /* 数字を大きく表示する */
+  font-weight: bold;            /* 太字にして目立たせる */
+  margin: 0;                    /* 上下のデフォルト余白を消す */
+}
+
+/* カウント状態のメッセージのスタイル */
+.counter-message {
+  font-size: 0.9rem;            /* 少し小さめの文字サイズ */
+  color: #e5e7eb;               /* 読みやすい明るさの文字色 */
+  margin-top: 8px;              /* 数字との間に少し余白をつける */
+}
+
+/* ボタン群全体のスタイル */
+.counter-controls {
+  display: flex;                /* 横並びで配置する */
+  gap: 8px;                     /* ボタン間に隙間をあける */
+  justify-content: center;      /* 横方向の中央寄せ */
+  margin-top: 8px;              /* カウント表示との距離を少しあける */
+  flex-wrap: wrap;              /* スマホで幅が足りない場合は折り返す */
+}
+
+/* 全てのボタンに共通のスタイル */
+.counter-button {
+  min-width: 80px;              /* ボタンの最小幅を指定する */
+  padding: 8px 12px;            /* ボタン内側の余白を指定する */
+  border-radius: 9999px;        /* 角を丸くしてピル型ボタンにする */
+  border: none;                 /* 枠線を消す */
+  font-size: 1rem;              /* 文字サイズを指定する */
+  font-weight: 600;             /* 少し太めの文字にする */
+  cursor: pointer;              /* ホバー時にポインタカーソルにする */
+  transition: transform 0.1s ease, opacity 0.1s ease; /* 押したときのアニメーション */
+}
+
+/* -1ボタン専用の色 */
+.counter-button--decrement {
+  background: #f97373;          /* 赤系の背景色 */
+  color: #111827;               /* 濃い文字色でコントラストをつける */
+}
+
+/* Resetボタン専用の色 */
+.counter-button--reset {
+  background: #e5e7eb;          /* 明るいグレー */
+  color: #111827;               /* 濃い文字色 */
+}
+
+/* +1ボタン専用の色 */
+.counter-button--increment {
+  background: #4ade80;          /* 緑系の背景色 */
+  color: #111827;               /* 濃い文字色 */
+}
+
+/* ボタンが押されたときの軽いアニメーション */
+.counter-button:active {
+  transform: scale(0.96);       /* 少しだけ縮小して押し込み感を出す */
+  opacity: 0.9;                 /* ほんの少し透明にする */
+}
+
+/* フッター全体のスタイル */
+.app-footer {
+  width: 100%;                  /* 幅は全体に広げる */
+  max-width: 640px;             /* 最大幅は640pxに制限する */
+  margin-top: 16px;             /* メインコンテンツとの距離をあける */
+  text-align: center;           /* テキストを中央寄せにする */
+  font-size: 0.8rem;            /* 少し小さめの文字サイズ */
+  color: #9ca3af;               /* 薄めの文字色でフッター感を出す */
+}
+
+/* フッター内の各行テキストのスタイル */
+.footer-text {
+  margin: 4px 0;                /* 上下に少しずつ余白をつける */
+}
+
+/* スマホなど画面幅が小さい端末向けの調整 */
+@media (max-width: 480px) {
+  .app-main {
+    padding: 16px;              /* 内側の余白を少し減らして画面に収める */
+  }
+
+  .counter-value {
+    font-size: 2.4rem;          /* 数字のサイズを少し小さくする */
+  }
+
+  .counter-controls {
+    gap: 6px;                   /* ボタン間の隙間を少し狭くする */
+  }
+
+  .counter-button {
+    min-width: 72px;            /* ボタンの幅も少し小さくする */
+    padding: 6px 10px;          /* 余白も少し減らす */
+  }
+}
